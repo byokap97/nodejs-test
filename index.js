@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const helmet = require('helmet');
+const bodyParser = require('body-parser');
 
 
 // =======================
@@ -12,6 +13,14 @@ const helmet = require('helmet');
 // =======================
 app.use(helmet());
 app.use(cors());
+
+// =======================
+// BodyParser    =========
+// =======================
+
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 // =======================
 // router ================
