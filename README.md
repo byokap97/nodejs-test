@@ -3,6 +3,7 @@
 
 ##### To use this api, you will need to let open the port 8080 of your server or pc!!!
 ##### - Dependencies
+<<<<<<< HEAD
   - Axios (to make http request)
   - Body-parser (to encapsule  the object body in the param body of the request)
   - Cors
@@ -12,6 +13,17 @@
   - Express-jwt (to decrypt jwt for security)
   - Mongoose (framework to use mongodb)
   - Nodemon
+=======
+  - axios (to make http request)
+  - body-parser (to encapsule  the object body in the param body of the request)
+  - cors
+  - express
+  - jsonwebtoken (to create jwt for use it as a bearer)
+  - helmet
+  - express-jwt (to decrypt jwt for security)
+  - mongoose (framework to use mongodb)
+  - nodemon
+>>>>>>> b264f5a3fb8e8a1fd348fdf48785a0aace58ec6b
 
 #### - Steps to use it correctly
   - install all dependencies (npm install)
