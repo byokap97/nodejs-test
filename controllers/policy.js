@@ -35,23 +35,14 @@ module.exports = {
         var id = req.params.number;
         if (!id || id === "") return res.status(404).json({ message: "we need an id to find something" });
         let policiy = await idFinder(id);
-        if (policiy) return res.status(200).json({ data: policiy, message: "here is your user" });
+        if (policiy) return res.status(200).json({ data: policiy, message: "here is your policy" });
         return res.status(404).json({ message: "we cannot find anything with this id" });
     },
     findByUserName: async (req, res) => {
         var name = req.params.name;
         if (!name || name === "") return res.status(404).json({ message: "we need a name to find something" });
-        let users = await userController.nameFinder(name);
-        var policies = [];
-        for(let i = 0; i < users.length ; i++){
-            userPolicies = await clientIdFinder(users[i].id);
-            let info = {
-                id : users[i].id,
-                name : users[i].name,
-                policies: userPolicies
-            }
-            policies.push(info)
-        }
+        let user = await userController.nameFinder(name);
+        var policies = await clientIdFinder(user.id);
         if (policies) return res.status(200).json({ data: policies, message: "here is your policies" });
         return res.status(404).json({ message: "we cannot find anything with this name" });
     },
