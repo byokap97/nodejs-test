@@ -3,6 +3,9 @@ const router = express.Router();
 const user = require('./controllers/user');
 const policy = require('./controllers/policy');
 const auth = require('./auth');
+const db = require('./controllers/database');
+
+db.connectToServer();
 
 router.get('/user/id/:id', auth.required, auth.errors, user.findById);
 router.get('/user/name/:name', auth.required, auth.errors, user.findByName);

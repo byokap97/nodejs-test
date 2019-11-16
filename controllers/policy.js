@@ -1,18 +1,9 @@
 const axios = require('axios');
 const userController = require('./user');
 
-async function database() {
-    return axios.get('http://www.mocky.io/v2/580891a4100000e8242b75c5')
-    .then(function (response) {
-        return response.data;
-    })
-    .catch(function (error) {
-        return false;
-    })
-}
 
 const idFinder = async (id) =>{
-    var db = await database();
+    var db = await module.exports.database();
     if (!db || db === undefined || !id || id === "") return false;
     let policiy = db.policies.filter(policiy => {
         return policiy.id == id;
@@ -21,7 +12,7 @@ const idFinder = async (id) =>{
 }
 
 const clientIdFinder = async (id) =>{
-    var db = await database();
+    var db = await module.exports.database();
 
     if (!db || db === undefined || !id || id === "") return false;
     let policiy = db.policies.filter(policiy => {
@@ -31,6 +22,15 @@ const clientIdFinder = async (id) =>{
 }
 
 module.exports = {
+    database: async ()  =>{
+        return axios.get('http://www.mocky.io/v2/580891a4100000e8242b75c5')
+        .then(function (response) {
+            return response.data;
+        })
+        .catch(function (error) {
+            return false;
+        })
+    },
     findByPolicyNumber: async (req, res) => {
         var id = req.params.number;
         if (!id || id === "") return res.status(404).json({ message: "we need an id to find something" });
